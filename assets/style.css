@@ -4,26 +4,48 @@ body {
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
+    background-image: url(/images/SkyCover.jpg);
+}
+
+.Search {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 15px; 
+    margin: 15px;
+    background-color: rgba(255, 255, 255, .6);
+    width: 50%;
+    border-radius: 15px;
 }
 
 #cityInput, #searchButton {
     padding: 10px;
     margin: 5px;
+    border-radius: 10px;
 }
 
 #weatherInfo, #forcast {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap; 
-    margin: 10px;
+    margin: 150px;
     padding: 15px;
-    background-color: rgba(255, 255, 255, .4);
-    border-radius: 5px;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 15px;
    
 }
 
-#weatherInfo h2, #forcast h2 {
+/* #weatherInfo h2, #forcast h2 {
     margin-top: 0;
-}
+} */
 
-/* Add more styles as needed for other elements */
+/* .forcast-day {
+    flex: 0 0 18%;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 5px;
+
+} */
+

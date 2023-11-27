@@ -20,7 +20,27 @@ function fetchWeatherData(city) {
             // notification if city is not found in database
         }
     })
-    
+    saveSearchHistory(city)
+}
+// function to save search history to local storage 
+
+function saveSearchHistory(city) {
+    let searches = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    if (!searches.includes(city)) {
+        searches.push(city);
+        localStorage.setItem('searchHistory', JSON.stringify(searches))
+    }
+    updateSearchHistoryDisplay()
+}
+// funciton to recall search history and create buttons for each one 
+
+function updateSearchHistoryDisplay() {
+    let searches = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    const searchHistoryDiv = document.getElementById('searchHistory');
+    searchHistoryDiv.innerHTML = '<h3>Search History</h3>';
+    searches.forEach(city => {
+        searchHistoryDiv.innerHTML += `<button onclick="fetchWeatherData('${city}')">${city}</button>`;
+    })
 }
 
 function fetchForecast(lat, lon, apiKey) {
@@ -60,7 +80,7 @@ function displayWeatherData(data) {
         <p>Feels Like: ${currentWeather.main.feels_like}°F</p>
         <p>Condition: ${currentWeather.weather[0].main}</p>
         <p>Humidity: ${currentWeather.main.humidity}%</p>
-        <p>Wind Speed: ${currentWeather.wind.speed}MPH</p>
+        <p>Wind Speed: ${currentWeather.wind.speed}Mph</p>
     `;
 
     // Display a simplified 5-day forecast
@@ -72,11 +92,11 @@ function displayWeatherData(data) {
     for (let i = 0; i < data.list.length; i += 8) { 
         const forecast = data.list[i];
         forecastDiv.innerHTML += `
-            <div>
+            <div class='forecast-day'>
                 <p><strong>${new Date(forecast.dt_txt).toDateString()}</strong></p>
                 <p>Temp: ${forecast.main.temp}°F</p>
                 <p>Condition: ${forecast.weather[0].main}</p>
-                <p>Wind Speed: ${forecast.wind.speed}MPH</p>
+                <p>Wind Speed: ${forecast.wind.speed}Mph</p>
                 <p>Humidity: ${forecast.main.humidity}%</p>
 
 
@@ -86,26 +106,28 @@ function displayWeatherData(data) {
     
 
 
-    
+    // Added function to change background image based on current conditions 
 }
 function updateBackgroundImage(condition) {
     let backgroundImageUrl;
 
     switch (condition) {
         case 'Clear':
-            backgroundImageUrl = "url('images/ClearDay.webp')"
+            backgroundImageUrl = "url('images/Sunny.jpg')"
             break;
         case 'Clouds':
-            backgroundImageUrl = "url('images/CloudyDay.jpg')"
+            backgroundImageUrl = "url('images/Cloudy.jpg')"
             break;
         case 'Rain':
-            backgroundImageUrl = "url('images/RainyDay.jpg')"
+            backgroundImageUrl = "url('images/Rainy.webp')"
             break;
         case 'Snow':
-            backgroundImageUrl = "url('images/SnowyDay.webp')"
+            backgroundImageUrl = "url('images/Snowy.jpg')"
             break;    
       
     }
     document.body.style.backgroundImage = backgroundImageUrl;
 }
+
+document.addEventListener('DOMContentLoaded', updateSearchHistoryDisplay);
 
