@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#cityInput, #searchButton {
+    padding: 10px;
+    margin: 5px;
+}
+
+#weatherInfo, #forcast {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; 
+    margin: 10px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, .4);
+    border-radius: 5px;
+   
+}
+
+#weatherInfo h2, #forcast h2 {
+    margin-top: 0;
+}
+
+/* Add more styles as needed for other elements */

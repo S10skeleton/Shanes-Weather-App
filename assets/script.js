@@ -33,7 +33,7 @@ function fetchForecast(lat, lon, apiKey) {
  
 }
 
-// Function for displaying fetched weather forcast 
+// Function for displaying fetched weather forcast and also check current condition
 function displayWeatherData(data) {
     const weatherInfoDiv = document.getElementById('weatherInfo');
     const forecastDiv = document.getElementById('forcast');
@@ -47,14 +47,20 @@ function displayWeatherData(data) {
         return;
     }
 
+
     // Display the first entry, current days weather
     // Temp is now displayed correctly in Fahrenheit 
+   
     const currentWeather = data.list[0];
+    const currentCondition = currentWeather.weather[0].main;
+    updateBackgroundImage(currentCondition);
     weatherInfoDiv.innerHTML = `
         <h2>Current Weather</h2>
         <p>Temperature: ${currentWeather.main.temp}°F</p>
+        <p>Feels Like: ${currentWeather.main.feels_like}°F</p>
         <p>Condition: ${currentWeather.weather[0].main}</p>
         <p>Humidity: ${currentWeather.main.humidity}%</p>
+        <p>Wind Speed: ${currentWeather.wind.speed}MPH</p>
     `;
 
     // Display a simplified 5-day forecast
@@ -70,7 +76,36 @@ function displayWeatherData(data) {
                 <p><strong>${new Date(forecast.dt_txt).toDateString()}</strong></p>
                 <p>Temp: ${forecast.main.temp}°F</p>
                 <p>Condition: ${forecast.weather[0].main}</p>
+                <p>Wind Speed: ${forecast.wind.speed}MPH</p>
+                <p>Humidity: ${forecast.main.humidity}%</p>
+
+
             </div>
         `;
     }
+    
+
+
+    
 }
+function updateBackgroundImage(condition) {
+    let backgroundImageUrl;
+
+    switch (condition) {
+        case 'Clear':
+            backgroundImageUrl = "url('images/ClearDay.webp')"
+            break;
+        case 'Clouds':
+            backgroundImageUrl = "url('images/CloudyDay.jpg')"
+            break;
+        case 'Rain':
+            backgroundImageUrl = "url('images/RainyDay.jpg')"
+            break;
+        case 'Snow':
+            backgroundImageUrl = "url('images/SnowyDay.webp')"
+            break;    
+      
+    }
+    document.body.style.backgroundImage = backgroundImageUrl;
+}
+
