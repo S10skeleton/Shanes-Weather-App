@@ -23,7 +23,11 @@ Wind speed in Mph.  5-day provides estimated Temp, Condition, Humidity, and Wind
 convienent retreival in the future. There is a clear history button to reset the site. The background images for the site change
 dynamically based on the current weather condition giving a quick visual representation of the current weather.
 
-## Link to completed application 
+## Link to completed application & Github repository 
+
+https://github.com/S10skeleton/Shanes-Weather-App
+
+https://s10skeleton.github.io/Shanes-Weather-App/
 
 ## Screenshot 
 

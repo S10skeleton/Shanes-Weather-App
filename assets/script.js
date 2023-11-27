@@ -15,12 +15,13 @@ function fetchWeatherData(city) {
             // Get the latitude and longitude of the first result
             const { lat, lon } = data[0]; 
             fetchForecast(lat, lon, apiKey, city);
+            saveSearchHistory(city)
+
         } else {
             console.log('City not found');
             // notification if city is not found in database
         }
     })
-    saveSearchHistory(city)
 }
 // function to save search history to local storage 
 
@@ -69,6 +70,9 @@ function displayWeatherData(data, city) {
 
     weatherInfoDiv.innerHTML = '';
     forecastDiv.innerHTML = '';
+
+    weatherInfoDiv.style.display = 'flex'
+    forecastDiv.style.display = 'flex'
 
     // if statement confirming there is actual data to return 
     if (!data || !data.list || data.list.length === 0) {

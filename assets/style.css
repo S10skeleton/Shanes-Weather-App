@@ -1,4 +1,5 @@
 body {
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     background-size: cover; 
@@ -42,14 +43,14 @@ body {
 
 
 #cityInput {
-    margin-top: 40px;
+    margin-top: 20px;
     width: 20%;
     height: 10%;
 }
 
 
 #weatherInfo, #forcast {
-    display: flex;
+    display: none;
     justify-content: space-around;
     flex-wrap: wrap; 
     margin: 150px;
@@ -59,17 +60,5 @@ body {
    
 }
 
-/* #weatherInfo h2, #forcast h2 {
-    margin-top: 0;
-} */
 
-/* .forcast-day {
-    flex: 0 0 18%;
-    text-align: center;
-    margin: 10px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, .5);
-    border-radius: 5px;
-
-} */
 
