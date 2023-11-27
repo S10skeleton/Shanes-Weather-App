@@ -14,7 +14,7 @@ function fetchWeatherData(city) {
         if (data && data.length > 0) {
             // Get the latitude and longitude of the first result
             const { lat, lon } = data[0]; 
-            fetchForecast(lat, lon, apiKey);
+            fetchForecast(lat, lon, apiKey, city);
         } else {
             console.log('City not found');
             // notification if city is not found in database
@@ -39,22 +39,31 @@ function updateSearchHistoryDisplay() {
     const searchHistoryDiv = document.getElementById('searchHistory');
     searchHistoryDiv.innerHTML = '<h3>Search History</h3>';
     searches.forEach(city => {
-        searchHistoryDiv.innerHTML += `<button onclick="fetchWeatherData('${city}')">${city}</button>`;
+        searchHistoryDiv.innerHTML += `<button class='History' onclick="fetchWeatherData('${city}')">${city}</button>`;
     })
 }
 
-function fetchForecast(lat, lon, apiKey) {
+document.getElementById('clearHistory').addEventListener('click', function() {
+    clearSearchHistory()
+})
+
+function clearSearchHistory() {
+    localStorage.removeItem('searchHistory');
+    updateSearchHistoryDisplay();
+}
+
+function fetchForecast(lat, lon, apiKey, city) {
     // API source using LAT and LON coordinates to fetch forcast
     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`)
     .then(response => response.json())
     .then(data => {
-        displayWeatherData(data);
+        displayWeatherData(data, city);
     })
  
 }
 
 // Function for displaying fetched weather forcast and also check current condition
-function displayWeatherData(data) {
+function displayWeatherData(data, city) {
     const weatherInfoDiv = document.getElementById('weatherInfo');
     const forecastDiv = document.getElementById('forcast');
 
@@ -75,7 +84,7 @@ function displayWeatherData(data) {
     const currentCondition = currentWeather.weather[0].main;
     updateBackgroundImage(currentCondition);
     weatherInfoDiv.innerHTML = `
-        <h2>Current Weather</h2>
+        <h2>Current Weather in ${city}</h2>
         <p>Temperature: ${currentWeather.main.temp}°F</p>
         <p>Feels Like: ${currentWeather.main.feels_like}°F</p>
         <p>Condition: ${currentWeather.weather[0].main}</p>
