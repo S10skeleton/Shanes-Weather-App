@@ -69,6 +69,7 @@ function fetchForecast(lat, lon, apiKey, city) {
 function displayWeatherData(data, city) {
   const weatherInfoDiv = document.getElementById("weatherInfo");
   const forecastDiv = document.getElementById("forcast");
+  const currentDate = getCurrentDate();
 
   weatherInfoDiv.innerHTML = "";
   forecastDiv.innerHTML = "";
@@ -82,6 +83,11 @@ function displayWeatherData(data, city) {
     return;
   }
 
+  function getCurrentDate() {
+    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    return new Date().toLocaleDateString(undefined, options);
+  }
+
   // Display the first entry, current days weather
   // Temp is now displayed correctly in Fahrenheit
 
@@ -89,7 +95,8 @@ function displayWeatherData(data, city) {
   const currentCondition = currentWeather.weather[0].main;
   updateBackgroundImage(currentCondition);
   weatherInfoDiv.innerHTML = `
-        <h2>Current Weather in ${city}</h2>
+        <h2>Current Weather in ${city}</h2>   
+        <p><strong>${currentDate}</strong></p>
         <p>Temperature: ${currentWeather.main.temp}°F</p>
         <p>Feels Like: ${currentWeather.main.feels_like}°F</p>
         <p>Condition: ${currentWeather.weather[0].main}</p>
