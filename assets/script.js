@@ -8,7 +8,7 @@ function fetchWeatherData(city) {
 
   // API source for getting city data from city name
   fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`
+    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`
   )
     .then((response) => response.json())
     .then((data) => {
