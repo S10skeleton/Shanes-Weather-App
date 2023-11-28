@@ -40,5 +40,5 @@ https://s10skeleton.github.io/Shanes-Weather-App/
 
 ## Screenshot 
 
-![ScreenshotCloudy](./images/CloudyScreenshot.png)
-![ScreenshotSunny](./images/SunnyScreenshot.png)
+![ScreenshotCloudy](./assets/images/CloudyScreenshot.png)
+![ScreenshotSunny](./assets/images/SunnyScreenshot.png)
