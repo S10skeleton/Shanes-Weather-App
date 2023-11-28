@@ -1,11 +1,12 @@
 body {
+    background-image: url(./images/SkyCover.jpg);
     min-height: 100vh;
     margin: 0;
     padding: 0;
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(/images/SkyCover.jpg);
+   
 }
 
 .Search {

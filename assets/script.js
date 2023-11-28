@@ -126,17 +126,19 @@ function updateBackgroundImage(condition) {
 
     switch (condition) {
         case 'Clear':
-            backgroundImageUrl = "url('images/Sunny.jpg')"
+            backgroundImageUrl = "url('/assets/images/Sunny.jpg')"
             break;
         case 'Clouds':
-            backgroundImageUrl = "url('images/Cloudy.jpg')"
+            backgroundImageUrl = "url('/assets/images/Cloudy.jpg')"
             break;
         case 'Rain':
-            backgroundImageUrl = "url('images/Rainy.webp')"
+            backgroundImageUrl = "url('/assets/images/Rainy.webp')"
             break;
         case 'Snow':
-            backgroundImageUrl = "url('images/Snowy.jpg')"
+            backgroundImageUrl = "url('/assets/images/Snowy.jpg')"
             break;    
+        default: 
+        backgroundImageUrl = "url('/assets/images/SkyCover.jpg')";
       
     }
     document.body.style.backgroundImage = backgroundImageUrl;
